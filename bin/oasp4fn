@@ -5,6 +5,9 @@
 const yargs = require('yargs');
 const chalk = require('chalk');
 
+const serverless = require('../dist/cli/cmds/serverless');
+const nestjs = require('../dist/cli/cmds/nestjs');
+
 function logError(err) {
     if(err) {
         if (process.env.DEBUG) {
@@ -29,7 +32,8 @@ function logError(err) {
 }
 
 try {
-    yargs.commandDir('../dist/cli/cmds')
+    yargs.command(serverless)
+        .command(nestjs)
         .help()
         .alias('h', 'help')
         .demandCommand()
